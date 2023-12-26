@@ -1,4 +1,4 @@
-# Dynamic Replanner Agent
+# Morpher - Dynamic Replanner Agent
 
 Dynamic agent which modifies the plan of execution on the fly. Inspired by BabyAGI and Plan-and-Execute agents.
 
