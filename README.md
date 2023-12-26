@@ -4,9 +4,9 @@ Dynamic agent which modifies the plan of execution on the fly. Inspired by BabyA
 
 ## What is it?
 
-Based on Plan-and-execute type agents, but capable of more complex tasks as it can think and update the plan based on new information after performing an action. 
+Based on Plan-and-execute type agents, but capable of more complex tasks as it can think and update the plan based on new information after performing an action. It is built from scratch to have better control and expandability over the implementation.
 
-This helps it to tackle tasks with longer sequences and potentially hierarchical tasks where sequential processing fails as the main task is split into multiple sub-tasks which should be processed before reaching the next step.
+The key added capability is iterative thinking and replanning after each action, facilitates longer execution sequences and potentially hierarchical tasks where sequential processing fails as the main task is split into multiple sub-tasks which should be processed before reaching the next step.
 
 ## Core Logic
 
@@ -126,3 +126,23 @@ Overall, OpenAI's research and development efforts have had a transformative imp
 customer service, and language translation. The organization's AI technologies have the potential to revolutionize
 industries, improve efficiency, and enhance human experiences in various domains.
 ```
+
+## Progress Tracker
+
+- [x] Implement a POC with major steps like, Plan, Thought, Action and Observation.
+- [x] Implement contextual memory to support the agent's reasoning.
+- [x] Implement a default tool to improve fault tolerance.
+- [x] Try out simple scenarios to demonstrate, (i) Dynamic planning, (ii) Research.
+- [x] Implement memory management to improve cost efficiency.
+- [x] Add Poetry for better dependency management and packaging support.
+- [ ] Refactor and reorganize the code to package it into a easy-to-use library.
+- [ ] Implement a tool for detailed searches, maybe use Browserless or something similar.
+- [ ] Add support for creating agents with roles.
+- [ ] Implement mechanism for inter-agent communication for more complex tasks.
+- [ ] Implement advanced memory mechanisms for short-term and long-term memory.
+- [ ] Publish it to PyPi.
+
+
+## References
+
+- [`yoheinakajima/babyagi`](https://github.com/yoheinakajima/babyagi) - BabyAGI is a pared-down version of the original Task-Driven Autonomous Agent (Mar 28, 2023) shared on Twitter.
