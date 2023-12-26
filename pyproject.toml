@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dynamic-planner-agent"
+name = "morpher"
 version = "0.1.0"
 description = "Dynamic agent that can modify the plan of execution on the fly."
 authors = ["Snehal Reddy Yelmati <snehalyelmati@gmail.com>"]
@@ -7,10 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-jupyterlab = "^4.0.9"
 openai = "^1.6.1"
 langchain = "^0.0.352"
 
+[tool.poetry.dev-dependencies]
+jupyterlab = "^4.0.9"
 
 [build-system]
 requires = ["poetry-core"]
