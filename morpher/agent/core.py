@@ -28,7 +28,6 @@ class Core(BaseModel):
     def prepare_plan(self, objective: str):
         planner_template = Template(OPENAI_PLANNER_TEMPLATE)
         prompt = planner_template.substitute(input=objective, tools=self.systemState.get_current_tools())
-        print(prompt)
         return OpenAIWrapper.generate(prompt)
 
     def think(self):
