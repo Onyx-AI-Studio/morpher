@@ -1,8 +1,11 @@
 import ast
+from string import Template
 from typing import List, Optional, Any
 
 from pydantic import BaseModel
 
+from morpher.llm import OpenAIWrapper
+from morpher.prompts import DEFAULT_TEMPLATE
 from morpher.tools import Tool, MiscTools, WebSearch
 
 
@@ -27,6 +30,13 @@ class SystemState(BaseModel):
 
         miscTools = MiscTools()
         self.tools.extend(miscTools.tool_info)
+
+        default_tool = Tool(
+            name="default_tool",
+            description="This is a general purpose tool, which is good at most tasks but use this as the last resort. Input must be a string, it must contain the task to perform.",
+            func=self.default_tool
+        ),
+        self.tools.append(*default_tool)
 
     def get_objective(self):
         return self.task
@@ -70,3 +80,15 @@ class SystemState(BaseModel):
         for s in self.short_term_memory[size - limit:]:
             memory += "Step: " + s.step + "\n" + "Result: " + s.output + "\n\n"
         return memory.strip()
+
+    def default_tool(self, input: str):
+        """
+        Default tool to improve fault tolerance.
+
+        :param input: Query as a string.
+        :return: Answer to the query.
+        """
+        prompt_template = Template(DEFAULT_TEMPLATE)
+        prompt = prompt_template.substitute(task=input, memory=self.get_memory())
+        result = OpenAIWrapper.generate(prompt)
+        return result

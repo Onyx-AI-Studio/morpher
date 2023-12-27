@@ -19,7 +19,7 @@ class WebSearch(BaseModel):
         self.tool_info = [
             Tool(
                 name="web_search",
-                description="Useful to get information on an unknown topic by searching it online. Input must be a string.",
+                description="Useful to get latest information about the query by searching the web. Input must be a string.",
                 func=self.web_search
             ),
         ]

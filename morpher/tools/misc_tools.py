@@ -25,11 +25,6 @@ class MiscTools(BaseModel):
                 description="Useful to perform basic arithmetic operations. Input must be a string.",
                 func=self.calculator
             ),
-            Tool(
-                name="default_tool",
-                description="This is a general purpose tool, which is good at most tasks. Input must be a string, it must contain the task to perform.",
-                func=self.default_tool
-            ),
         ]
 
     @staticmethod
@@ -54,15 +49,15 @@ class MiscTools(BaseModel):
         result = OpenAIWrapper.generate(prompt)
         return result
 
-    @staticmethod
-    def default_tool(input: str):
-        """
-        Default tool to improve fault tolerance.
-
-        :param input: Query as a string.
-        :return: Answer to the query.
-        """
-        prompt_template = Template(DEFAULT_TEMPLATE)
-        prompt = prompt_template.substitute(task=input, memory=get_memory())
-        result = OpenAIWrapper.generate(prompt)
-        return result
+    # @staticmethod
+    # def default_tool(input: str):
+    #     """
+    #     Default tool to improve fault tolerance.
+    #
+    #     :param input: Query as a string.
+    #     :return: Answer to the query.
+    #     """
+    #     prompt_template = Template(DEFAULT_TEMPLATE)
+    #     prompt = prompt_template.substitute(task=input, memory=get_memory())
+    #     result = OpenAIWrapper.generate(prompt)
+    #     return result

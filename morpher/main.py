@@ -1,7 +1,4 @@
-from morpher.agent import SystemState
+from morpher.agent import Core
 
-# state = SystemState()
-state = SystemState("Research about OpenAI")
-
-# Test out the web_search tool
-print(state.tools[0].func("Who is John Wick?"))
+agent1 = Core(task="Calculate the double of the age of Tom Cruise")
+agent1.run_agent()
