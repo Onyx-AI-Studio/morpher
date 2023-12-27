@@ -1,12 +1,28 @@
 from string import Template
+from typing import List
 
 from pydantic import BaseModel
 
 from morpher.llm import OpenAIWrapper
 from morpher.prompts import CALCULATOR_TEMPLATE, DEFAULT_TEMPLATE
+from morpher.tools import Tool
 
 
 class MiscTools(BaseModel):
+    tool_info: List[Tool] = [
+        Tool(
+            name="meaning_of_life",
+            description="Useful to get information on an unknown topic by searching it online. Input must be a string."
+        ),
+        Tool(
+            name="calculator",
+            description="Useful to perform basic arithmetic operations. Input must be a string."
+        ),
+        Tool(
+            name="default_tool",
+            description="This is a general purpose tool, which is good at most tasks. Input must be a string, it must contain the task to perform."
+        ),
+    ]
 
     @staticmethod
     def meaning_of_life():

@@ -1,14 +1,23 @@
 import json
+from typing import List
 
 import requests
 from dotenv import load_dotenv
 from langchain.utilities import GoogleSerperAPIWrapper
 from pydantic import BaseModel
 
+from morpher.tools import Tool
+
 load_dotenv()
 
 
 class WebSearch(BaseModel):
+    tool_info: List[Tool] = [
+        Tool(
+            name="web_search",
+            description="Useful to get information on an unknown topic by searching it online. Input must be a string."
+        ),
+    ]
 
     @staticmethod
     def web_search(query: str):
