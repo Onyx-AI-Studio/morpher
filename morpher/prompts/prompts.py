@@ -95,6 +95,8 @@ Instructions:
 * Use only the tools mentioned below if and when needed.
 * Return the output in the form of an array, follow the below output format strictly.
 
+Task: $input
+
 Tools:
 ```
 $tools
@@ -108,8 +110,6 @@ Output format:
     ...
 ]
 ```
-
-Task: $input
 
 Return the output in the specified format, do not deviate. Do not add any text before or after the output.
 """
