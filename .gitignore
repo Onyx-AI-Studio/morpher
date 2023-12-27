@@ -2,4 +2,6 @@
 .ipynb_checkpoints/
 .python-version
 .envrc
+.env
 **/.idea
+**/__pycache__/
