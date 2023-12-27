@@ -4,25 +4,37 @@ Dynamic agent which modifies the plan of execution on the fly. Inspired by BabyA
 
 ## What is it?
 
-Based on Plan-and-execute type agents, but capable of more complex tasks as it can think and update the plan based on new information after performing an action. It is built from scratch to have better control and expandability over the implementation.
+Based on Plan-and-execute type agents, but capable of more complex tasks as it can think and update the plan based on
+new information after performing an action. It is built from scratch to have better control and expandability over the
+implementation.
 
-The key added capability is iterative thinking and replanning after each action, facilitates longer execution sequences and potentially hierarchical tasks where sequential processing fails as the main task is split into multiple sub-tasks which should be processed before reaching the next step.
+The key added capability is iterative thinking and replanning after each action, facilitates longer execution sequences
+and potentially hierarchical tasks where sequential processing fails as the main task is split into multiple sub-tasks
+which should be processed before reaching the next step.
 
 ## Core Logic
 
-1. Prepare a plan based on the task. 
+1. Prepare a plan based on the task.
 2. Loop over the below step to iteratively,
     1. `Think`: Keeping the current step in mind, choose the right tool from the arsenal with the right input.
     2. `Act`: Execute the selected tool with the input from the previous step.
     3. `Observe`: Based on the output of the action step, extract relevant information and update the current plan.
 
-## Examples
+## Example Usage
 
 ### Example 1 - Dynamic Planning
 
 This simple example demonstrates the concept of dynamic planning.
 
+```python
+from morpher import Core
+
+agent = Core(task="Calculate the double of the age of Tom Cruise")
 ```
+
+```
+----- OUTPUT -----
+
 Task: Calculate the double of the age of Tom Cruise.
 
 Current Plan:
@@ -71,10 +83,20 @@ FINAL RESULT: 122
 
 ### Example 2 - Research
 
-This example demonstrates the ability of the model to research on a particular topic. Omitting output for all the intermediate steps as it is too long.
+This example demonstrates the ability of the model to research on a particular topic. Omitting output for all the
+intermediate steps as it is too long.
+
+```python
+from morpher import Core
+
+agent = Core(
+    task="Research about the current state of OpenAI. Get an outline, search for more information if needed and colate everything together into a coherent essay.")
+```
 
 ```
-Task: Calculate the double of the age of Tom Cruise.
+----- OUTPUT -----
+
+Task: Research about the current state of OpenAI. Get an outline, search for more information if needed and colate everything together into a coherent essay.
 
 Current Plan:
 [
@@ -135,14 +157,14 @@ industries, improve efficiency, and enhance human experiences in various domains
 - [x] Try out simple scenarios to demonstrate, (i) Dynamic planning, (ii) Research.
 - [x] Implement memory management to improve cost efficiency.
 - [x] Add Poetry for better dependency management and packaging support.
-- [ ] Refactor and reorganize the code to package it into a easy-to-use library.
+- [x] Refactor and reorganize the code to package it into a easy-to-use library.
+- [ ] Add installation instructions and publish it to PyPi.
 - [ ] Implement a tool for detailed searches, maybe use Browserless or something similar.
 - [ ] Add support for creating agents with roles.
 - [ ] Implement mechanism for inter-agent communication for more complex tasks.
 - [ ] Implement advanced memory mechanisms for short-term and long-term memory.
-- [ ] Publish it to PyPi.
-
 
 ## References
 
-- [`yoheinakajima/babyagi`](https://github.com/yoheinakajima/babyagi) - BabyAGI is a pared-down version of the original Task-Driven Autonomous Agent (Mar 28, 2023) shared on Twitter.
+- [`yoheinakajima/babyagi`](https://github.com/yoheinakajima/babyagi) - BabyAGI is a pared-down version of the original
+  Task-Driven Autonomous Agent (Mar 28, 2023) shared on Twitter.
