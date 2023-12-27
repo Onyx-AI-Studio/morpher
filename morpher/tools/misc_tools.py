@@ -1,5 +1,5 @@
 from string import Template
-from typing import List
+from typing import List, Any
 
 from pydantic import BaseModel
 
@@ -9,20 +9,28 @@ from morpher.tools import Tool
 
 
 class MiscTools(BaseModel):
-    tool_info: List[Tool] = [
-        Tool(
-            name="meaning_of_life",
-            description="Useful to get information on an unknown topic by searching it online. Input must be a string."
-        ),
-        Tool(
-            name="calculator",
-            description="Useful to perform basic arithmetic operations. Input must be a string."
-        ),
-        Tool(
-            name="default_tool",
-            description="This is a general purpose tool, which is good at most tasks. Input must be a string, it must contain the task to perform."
-        ),
-    ]
+    tool_info: List[Tool] = []
+
+    def __init__(self, **data: Any):
+        super().__init__(**data)
+
+        self.tool_info: List[Tool] = [
+            Tool(
+                name="meaning_of_life",
+                description="Useful to get information on an unknown topic by searching it online. Input must be a string.",
+                func=self.meaning_of_life
+            ),
+            Tool(
+                name="calculator",
+                description="Useful to perform basic arithmetic operations. Input must be a string.",
+                func=self.calculator
+            ),
+            Tool(
+                name="default_tool",
+                description="This is a general purpose tool, which is good at most tasks. Input must be a string, it must contain the task to perform.",
+                func=self.default_tool
+            ),
+        ]
 
     @staticmethod
     def meaning_of_life():

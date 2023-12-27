@@ -1,5 +1,5 @@
 import json
-from typing import List
+from typing import List, Any
 
 import requests
 from dotenv import load_dotenv
@@ -12,12 +12,17 @@ load_dotenv()
 
 
 class WebSearch(BaseModel):
-    tool_info: List[Tool] = [
-        Tool(
-            name="web_search",
-            description="Useful to get information on an unknown topic by searching it online. Input must be a string."
-        ),
-    ]
+    tool_info: List[Tool] = []
+
+    def __init__(self, **data: Any):
+        super().__init__(**data)
+        self.tool_info = [
+            Tool(
+                name="web_search",
+                description="Useful to get information on an unknown topic by searching it online. Input must be a string.",
+                func=self.web_search
+            ),
+        ]
 
     @staticmethod
     def web_search(query: str):
